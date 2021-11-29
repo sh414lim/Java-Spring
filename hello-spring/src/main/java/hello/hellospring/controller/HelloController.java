@@ -12,7 +12,7 @@ public class HelloController {
         @GetMapping("hello") //wep 애플리케이션에서 /hello 들어오면 이 메서드 호출
     public String hello(Model model){
         model.addAttribute("date","spring!!");
-        return "hello";
+        return "hello"; //hello 템플릿을 찾아가라 -> resources 밑에 templates 밑에를 찾아서
 
             }
 
