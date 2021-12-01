@@ -38,18 +38,18 @@ class MemverServiceTest {
     }
 
     @Test
-    void join() {
+    void join() {                    // given when then 문법 추천 (테스트 패턴)
         //given
         Member member =new Member();
         member.setName("spring");
 
         //when
-        Long saveId = memverService.join(member);
+        Long saveId = memverService.join(member); //join 검증
 
 
         //then
-        Member findMember = memverService.findOne(saveId).get();
-        assertThat(member.getName()).isEqualTo(findMember.getName())     ;
+        Member findMember = memverService.findOne(saveId).get(); //우리가 저장을 한게 리퍼지토리에 잇는지 확인
+        assertThat(member.getName()).isEqualTo(findMember.getName()) ; //member 이름이 findeMember 과 같은지 실행
     }
 
     @Test
@@ -67,6 +67,7 @@ class MemverServiceTest {
 
         //우리가 쓴 IllegalStateException 넣고 람다
         // command option v 단추키 기억
+
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memverService.join(member2));//예외가 터져야한다
 
         assertThat(e.getMessage()).isEqualTo("이미 회원이 존재합니다");
