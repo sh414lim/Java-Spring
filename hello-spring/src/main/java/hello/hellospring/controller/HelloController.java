@@ -18,7 +18,7 @@ public class HelloController {
 
             //mvc 패턴
     @GetMapping("hello-mvc")
-    public String helloMvc(@RequestParam("name") String name, Model model){//파라미터를 받는다
+    public String helloMvc(@RequestParam("name") String name, Model model){//외부에서 파라미터를 받고 모델에 저장해서 보낸다
         model.addAttribute("name",name);
         return "hello-template";
 
@@ -26,8 +26,9 @@ public class HelloController {
 
     //api 그대로 이 소스를 내려준다
     @GetMapping("hello-string")
-    @ResponseBody   //http body  직접 데이터를 넣어주겟다
+    @ResponseBody   //http에서  body부에  직접 데이터를 넣어주겟다
     public  String helloString(@RequestParam("name") String name){
+
             return "hello" + name;
     }
 
@@ -41,13 +42,13 @@ public class HelloController {
         return hello;
     }
 
-    //static class? -> class 안에서 class 사용
+    //static class? -> class 안에서 class 사용  HelloControal.Hello 로 사용가능
     static class Hello{
 
      private String name;
 
 
-     //getter,setter -> 자바빈 규약 라이브러리에서 쓴다 메서드를 통해 private 변수에 접근
+     //getter,setter -> 자바빈 규약 라이브러리에서 쓴다 메서드를 통해 private 변수에 접근 ->외부에서 접근할 시 get-set를 통해서 접근
         //프로퍼티 접근 방식
         public String getName() {
             return name;
