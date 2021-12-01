@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+
+
 //멤버컨테이너는 스프링컨테이너 가 뜰때 생성된다.->생성자 호출
 @Controller
 public class MemberController {

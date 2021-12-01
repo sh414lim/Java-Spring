@@ -18,33 +18,35 @@ class MemoryMemberRepositoryTest {
      MemoryMemberRepository repositiry = new MemoryMemberRepository(); //구현 클래스
 
      //테스트 메서드가 끝날때 마다 클리어 메소드
+    //만들지 않으면 테스트의 순서가 비보장
     @AfterEach
         public void afferEach(){
     repositiry.clearStore(); //메소드가 끝날때마다 저장소를 비운다
         }
 
-         @Test //테스트
-         public void save(){
+         @Test //테스트 //@test import 이걸 실행할 수 있다.
+         public void save() {
              Member member = new Member();
              member.setName("spring");
 
-             repositiry.save(member);
-             Member result = repositiry.findById(member.getId()).get();
-//             Assertions.assertEquals(member,null);
-             assertThat(member).isEqualTo(result); //테스트 비교
+             repositiry.save(member); //레퍼지토리에 세이브
+             Member result = repositiry.findById(member.getId()).get(); //확인 옵셔널에서는 get 으로 꺼냄(테스트 에서)
+//             Assertions.assertEquals(member,result); 멤버가 find 햇을때 나와야된다
+             assertThat(member).isEqualTo(result); //테스트 비교 member 가 result 랑 똑같다 바로 알려줌
 
+         }
      }
     @Test
-     public void findByname(){
+     public void findByname(){ //이름으로 찾음
         Member member1 = new Member();
-        member1.setName("spring1");
-        repositiry.save(member1);
+        member1.setName("spring1"); //set
+        repositiry.save(member1); //레퍼지토리에 member1 을 저장
 
         Member member2  = new Member();
         member2.setName("spring2");
         repositiry.save(member2);
 
-        Member result = repositiry.findByName("spring1").get();
+        Member result = repositiry.findByName("spring1").get(); //get 옵셔널 까서 거냄
 
 
         assertThat(result).isEqualTo(member1);
